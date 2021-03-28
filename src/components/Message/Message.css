@@ -1,0 +1,74 @@
+.message {
+  width: 300px;
+  margin: 10px auto;
+  border: 4px solid transparent;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  font-weight: 900;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #555d60;
+  font-family: arial;
+  position: relative;
+}
+
+.message-metadata {
+  width: 300px;
+  height: 11px;
+  text-align: left;
+  font-size: 11px;
+  position: relative;
+}
+
+.tic1:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 10px solid transparent;
+  border-right: 10px solid #555d60;
+  border-top: 10px solid #555d60;
+  border-bottom: 10px solid transparent;
+  right: 20px;
+  bottom: -23px;
+}
+
+.tic1:after {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 10px solid transparent;
+  border-right: 10px solid  #555d60;
+  border-top: 10px solid  #555d60;
+  border-bottom: 10px solid transparent;
+  right: 24px;
+  bottom: -13px;
+}
+
+.tic2:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 10px solid #555d60;
+  border-right: 10px solid #555d60;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  left: 20px;
+  bottom: -23px;
+}
+
+.tic2:after {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 10px solid  #cadfec;
+  border-right: 10px solid transparent;
+  border-top: 10px solid  #cadfec;
+  border-bottom: 10px solid transparent;
+  left: 24px;
+  bottom: -13px;
+}
