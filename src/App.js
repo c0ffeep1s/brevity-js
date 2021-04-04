@@ -15,9 +15,20 @@ class App extends Component {
     }
   }
 
+  get uid() {
+      return (firebase.auth().currentUser || {}).uid;
+  }
+
+  // get user() {
+  //   return {
+  //     name: ...,
+  //     id: ...,
+  //   }
+  // }
+
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
-      this.setState({ user });
+      this.setState({ 'user': user });
     });
   }
 

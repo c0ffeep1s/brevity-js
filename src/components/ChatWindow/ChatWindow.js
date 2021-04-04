@@ -17,11 +17,22 @@ export default class ChatWindow extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
     this.messageRef = firebase.database().ref().child('messages');
-    this.listenMessages();
+  }
+
+  // listen messages
+  componentDidMount() {
+    this.messageRef.limitToLast(10).on('value', message => {
+      this.setState({
+        // this is returning null because data is empty
+        data: Object.values(message.val() || {})
+      });
+    });
   }
 
   componentWillReceiveProps(nextProps) {
+    // why is this always undefined
     if(nextProps.user) {
+      // this is the client's user name
       this.setState({'userName': nextProps.user.displayName});
     }
   }
@@ -34,7 +45,7 @@ export default class ChatWindow extends Component {
     if (this.state.message) {
       var newData = {
         userName: this.state.userName,
-        message: this.state.message
+        message: this.state.message,
       }
 
       this.messageRef.push(newData);
@@ -46,21 +57,12 @@ export default class ChatWindow extends Component {
     }
   }
 
-  listenMessages() {
-    this.messageRef.limitToLast(10).on('value', message => {
-      this.setState({
-        // this is returning null because data is empty
-        data: Object.values(message.val() || {})
-      });
-    });
-  }
-
   render() {
     return (
       <div >
         <div className="message-list">
           { this.state.data.map( (item, index) =>
-          <Message key={index} message={item} /> ) }
+          <Message key={index} message={item} me={this.state.userName}/> ) }
         </div>
         <div className="chat-window">
           <form onSubmit={this.handleSend}>
